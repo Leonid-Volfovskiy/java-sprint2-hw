@@ -1,7 +1,6 @@
-public class CheckData {
+public class CheckData { // класс для сверки отчетов
 
     public void checkDataReports() {
-
 
         Recorder dataRecorder = new Recorder();
 
@@ -11,6 +10,8 @@ public class CheckData {
         if ((isMonthReportRecorded == false) || (isYearReportRecorded == false)) {
             System.out.println("Один из отчётов ещё не считан!");
             return;
+
+
         }
 
     }

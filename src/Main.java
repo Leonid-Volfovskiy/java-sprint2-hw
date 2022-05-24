@@ -1,11 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-
         Recorder dataRecorder = new Recorder();
-        CheckData checkData = new CheckData();
-
+//      CheckData checkData = new CheckData();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             printMenu();
@@ -16,18 +15,17 @@ public class Main {
                     break;
                 case 2:
                     dataRecorder.readYearFile();
-                    System.out.println("Годовой отчёт считан");
                     break;
-                case 3:
-                    checkData.checkDataReports();
+ /*             case 3:
+
                     break;
-/*                 case 4:
-                    fileInfo.infoMonth();
+                case 4:
+
                     break;
                 case 5:
-                    fileInfo.infoYear();
+
                     break;
-*/              case 4:
+*/              case 3:
                     scanner.close();
                     System.exit(0);
                 default:
@@ -38,7 +36,6 @@ public class Main {
         }
 
     }
-
 
     private static void printMenu() {
         System.out.println("1: Считать все месячные отчёты");

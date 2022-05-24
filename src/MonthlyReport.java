@@ -1,14 +1,23 @@
-public class MonthlyReport {
-    private String itemName;
-    private boolean isExpense;
-    private int quantity;
-    private int sumOfOne;
+import java.util.ArrayList;
 
+public class MonthlyReport { // класс для хранения считанных и распарсенных данных по месячным отчётам
+    static ArrayList<MonthlyReportRecord> records = new ArrayList<>();
 
-    public MonthlyReport(String itemName, boolean isExpense, int quantity, int sumOfOne) {
-        this.itemName = itemName;
-        this.isExpense = isExpense;
-        this.quantity = quantity;
-        this.sumOfOne = sumOfOne;
+    public static void addToLIst (MonthlyReportRecord recordOfMonth) {
+        records.add(recordOfMonth);
     }
+
 }
+
+
+
+ /*
+        for (MonthlyReportRecord listOfRecords : records) {
+            if (listOfRecords.getIsExpense()) {
+                expenses.put(listOfRecords.getMonthNumber(), listOfRecords.getCostOfItem());
+            } else {
+                incomes.put(listOfRecords.getMonthNumber(), listOfRecords.getCostOfItem());
+            }
+
+
+*/

@@ -1,12 +1,10 @@
-public class YearlyReport{
+import java.util.ArrayList;
 
-    private int month;
-    private int amount;
-    private boolean isExpense;
+public class YearlyReport { // класс для хранения считанных и распарсенных данных по годовому отчёту
+    static ArrayList<YearlyReportRecord> records = new ArrayList<>();
 
-    public YearlyReport(int month, int amount, boolean isExpense) {
-        this.month = month;
-        this.amount = amount;
-        this.isExpense = isExpense;
+    public static void addToLIst (YearlyReportRecord recordOfYear) {
+        records.add(recordOfYear);
     }
+
 }
