@@ -4,8 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
         Recorder dataRecorder = new Recorder();
-//      CheckData checkData = new CheckData();
+        Manager checkData = new Manager();
         Scanner scanner = new Scanner(System.in);
+        MonthlyReport monthlyReport = new MonthlyReport();
+        YearlyReport yearlyReport = new YearlyReport();
+
         while (true) {
             printMenu();
             int number = scanner.nextInt();
@@ -16,16 +19,16 @@ public class Main {
                 case 2:
                     dataRecorder.readYearFile();
                     break;
- /*             case 3:
-
+                case 3:
+                    checkData.checkDataReports();
                     break;
                 case 4:
-
+                    monthlyReport.getMonthStatistic();
                     break;
                 case 5:
-
+                    yearlyReport.getYearStatistic();
                     break;
-*/              case 3:
+                case 6:
                     scanner.close();
                     System.exit(0);
                 default:

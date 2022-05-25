@@ -3,6 +3,7 @@ public class MonthlyReportRecord { // класс для создания кон�
     private boolean isExpense;
     private int costOfItem;
     private int monthNumber;
+
     public MonthlyReportRecord(String itemName, boolean isExpense, int costOfItem, int monthNumber) {
         this.itemName = itemName;
         this.isExpense = isExpense;
@@ -11,18 +12,23 @@ public class MonthlyReportRecord { // класс для создания кон�
     }
 
     public String getItemName() {
+
         return itemName;
     }
 
     public boolean getIsExpense() {
+
         return isExpense;
     }
 
     public int getCostOfItem() {
+
         return costOfItem;
     }
-
     public int getMonthNumber() {
+
         return monthNumber;
     }
+
+
 }

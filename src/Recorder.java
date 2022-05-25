@@ -19,7 +19,7 @@ public class Recorder { // класс в котором получаем дан�
                 String line = lines[i];
                 String[] parts = line.split(",");
                 String itemName = parts[0];
-                boolean isExpense = Boolean.parseBoolean(parts[1]); // "true" -> true
+                boolean isExpense = Boolean.parseBoolean(parts[1]); 
                 int quantity = Integer.parseInt(parts[2]);
                 int sumOfOne = Integer.parseInt(parts[3]);
                 int costOfItem = quantity * sumOfOne;

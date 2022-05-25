@@ -14,13 +14,12 @@ public class YearlyReportRecord {
         return month;
     }
 
-    public boolean isIsExpense() {
+    public boolean getIsExpense() {
         return isExpense;
     }
 
     public int getAmount() {
         return amount;
     }
-
 
 }
