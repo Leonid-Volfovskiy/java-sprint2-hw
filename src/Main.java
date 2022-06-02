@@ -3,12 +3,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Recorder dataRecorder = new Recorder();
-        Manager checkData = new Manager();
         Scanner scanner = new Scanner(System.in);
         MonthlyReport monthlyReport = new MonthlyReport();
         YearlyReport yearlyReport = new YearlyReport();
-
+        Recorder dataRecorder = new Recorder(monthlyReport, yearlyReport);
+        Manager manager = new Manager(monthlyReport, yearlyReport);
         while (true) {
             printMenu();
             int number = scanner.nextInt();
@@ -20,7 +19,7 @@ public class Main {
                     dataRecorder.readYearFile();
                     break;
                 case 3:
-                    checkData.checkDataReports();
+                    manager.checkDataReports();
                     break;
                 case 4:
                     monthlyReport.getMonthStatistic();
@@ -29,8 +28,7 @@ public class Main {
                     yearlyReport.getYearStatistic();
                     break;
                 case 6:
-                    scanner.close();
-                    System.exit(0);
+                    return;
                 default:
                     System.out.println("Не верная команда");
                     break;

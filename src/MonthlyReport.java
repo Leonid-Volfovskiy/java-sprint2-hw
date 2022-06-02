@@ -2,49 +2,51 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MonthlyReport { // класс для хранения считанных и распарсенных данных по месячным отчётам
+    String currentMonthName = null;
+    String[] monthsNames = {"Январь","Февраль","Март"};
 
-    static ArrayList<MonthlyReportRecord> records = new ArrayList<>();;
+    static ArrayList<MonthlyReportRecord> records = new ArrayList<>();
 
     public static void addToLIst(MonthlyReportRecord recordOfMonth) {
 
         records.add(recordOfMonth);
     }
 
-    public int getMonthlyIncomes() {
-        int sumMonthlyIncomes = 0;
-        for (MonthlyReportRecord listOfRecords : records) {
-            if (listOfRecords.getIsExpense() == true) {
-                sumMonthlyIncomes += listOfRecords.getCostOfItem();
-            }
-        }
-        System.out.println();
-        return sumMonthlyIncomes;
-    }
 
-    public int getMonthlyExpenses() {
+    public int getMonthlyExpenses(int monthNumber) {
         int sumMonthlyExpenses = 0;
         for (MonthlyReportRecord listOfRecords : records) {
-            if (listOfRecords.getIsExpense() == false) {
-                sumMonthlyExpenses += listOfRecords.getCostOfItem();
+            if (listOfRecords.getMonthNumber() == monthNumber) {
+                if (listOfRecords.getIsExpense()) {
+                    sumMonthlyExpenses += listOfRecords.getCostOfItem();
+                }
             }
         }
         return sumMonthlyExpenses;
     }
 
+    public int getMonthlyIncomes(int monthNumber) {
+        int sumMonthlyIncomes = 0;
+        for (MonthlyReportRecord listOfRecords : records) {
+            if (listOfRecords.getMonthNumber() == monthNumber) {
+                if (!listOfRecords.getIsExpense()) {
+                    sumMonthlyIncomes += listOfRecords.getCostOfItem();
+                }
+            }
+        }
+        return sumMonthlyIncomes;
+    }
+
     public void getMonthStatistic() {
-        String currentMonthName = null;
-        String[] monthsNames = {"Январь","Февраль","Март"};
-
-
-        for (int m = 0; m <= 2; m++) {
-            currentMonthName = monthsNames[m];
+        for (int month = 1; month <= 3; month++) {
+            currentMonthName = monthsNames[month - 1];
 
             HashMap<String, Integer> expensesList = new HashMap<>();
             HashMap<String, Integer> incomesList = new HashMap<>();
 
             for (MonthlyReportRecord listOfRecords : records) {
-                if (listOfRecords.getMonthNumber() == (m+1)) {
-                    if (listOfRecords.getIsExpense() == true) {
+                if (listOfRecords.getMonthNumber() == month) {
+                    if (listOfRecords.getIsExpense()) {
                         expensesList.put(listOfRecords.getItemName(), listOfRecords.getCostOfItem());
                     } else {
                         incomesList.put(listOfRecords.getItemName(), listOfRecords.getCostOfItem());
@@ -81,11 +83,15 @@ public class MonthlyReport { // класс для хранения считан�
                 }
             }
 
-            System.out.println("Месяц : " + currentMonthName);
-            System.out.println("Самый прибыльный товар : " + itemNameIncome + " на сумму " + maxIncome);
-            System.out.println("Самая большая затрата : " + itemNameExpense + " на сумму " +  maxExpense);
+            if ((maxIncome != 0) && (maxExpense != 0)) {
+                System.out.println("Месяц : " + currentMonthName);
+                System.out.println("Самый прибыльный товар : " + itemNameIncome + " на сумму " + maxIncome);
+                System.out.println("Самая большая затрата : " + itemNameExpense + " на сумму " +  maxExpense);
+            } else {
+                System.out.println("Ошибка, необходимо проверить наличие отчета за " + currentMonthName + " в директории");
+            }
         }
-
     }
-
 }
+
+

@@ -1,4 +1,5 @@
 public class MonthlyReportRecord { // класс для создания конструктора обекта для каждой записи траты/дохода из месяца
+
     private String itemName;
     private boolean isExpense;
     private int costOfItem;

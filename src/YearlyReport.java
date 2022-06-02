@@ -9,62 +9,73 @@ public class YearlyReport { // класс для хранения считанн
     }
 
     int year = 2021;
+    String[] monthsNames = {"Январь","Февраль","Март"};
+    String currentMonthName = null;
 
-    public int getYearlyIncomes() {
-        int sumYearlyIncomes = 0;
+    public int getYearlyExpenses(int monthBumber) {
+        int sumMonthExpenseInYear = 0;
         for (YearlyReportRecord listOfRecords : records) {
-            if (listOfRecords.getIsExpense() == true) {
-                sumYearlyIncomes += listOfRecords.getAmount();
+            if (listOfRecords.getMonth() == monthBumber) {
+                if (listOfRecords.getIsExpense()) {
+                    sumMonthExpenseInYear += listOfRecords.getAmount();
+                }
             }
         }
-        return sumYearlyIncomes;
+        return sumMonthExpenseInYear;
     }
-    public int getYearlyExpenses() {
-        int sumYearlyExpenses = 0;
+
+    public int getYearlyIncomes(int monthBumber) {
+        int sumMonthIncomeInYear = 0;
         for (YearlyReportRecord listOfRecords : records) {
-            if (listOfRecords.getIsExpense() == false) {
-                sumYearlyExpenses += listOfRecords.getAmount();
+            if (listOfRecords.getMonth() == monthBumber) {
+                if (!listOfRecords.getIsExpense()) {
+                    sumMonthIncomeInYear += listOfRecords.getAmount();
+                }
             }
         }
-        return sumYearlyExpenses;
+        return sumMonthIncomeInYear;
     }
 
     public void getYearStatistic() {
-        String[] monthsNames = {"Январь","Февраль","Март"};
-        String currentMonthName = null;
-        int monthIncome = 0;
-        int monthExpense = 0;
         int averageExpenses = 0;
         int averageIncomes = 0;
-        Integer yearSumExpenses = 0;
-        Integer yearSumincomes = 0;
+        int yearSumExpenses = 0;
+        int yearSumincomes = 0;
+        int monthIncome = 0;
+        int monthExpense = 0;
 
         System.out.println("Год : " + year);
 
-        for (int m = 0; m <= 2; m++) {
-            currentMonthName = monthsNames[m];
-            System.out.println("Месяц : " + currentMonthName);
+        for (int month = 1; month <= 3; month++) {
+            currentMonthName = monthsNames[month - 1];
             for (YearlyReportRecord listOfRecords : records) {
-                if (listOfRecords.getMonth() == (m+1)) {
-                    if (listOfRecords.getIsExpense() == true) {
+                if (listOfRecords.getMonth() == month) {
+                    if (listOfRecords.getIsExpense()) {
                         monthExpense =  listOfRecords.getAmount();
-                        System.out.println("Затраты за месяц составили: " + monthExpense);
                     } else {
                         monthIncome = listOfRecords.getAmount();
-                        System.out.println("Доходы за месяц составили: " + monthIncome);
                     }
                 }
             }
-            yearSumExpenses += monthExpense;
-            yearSumincomes += monthIncome;
+            if ((monthIncome != 0) && (monthExpense != 0)) {
+                System.out.println("Месяц : " + currentMonthName);
+                System.out.println("Доходы за месяц составили: " + monthIncome);
+                System.out.println("Затраты за месяц составили: " + monthExpense);
 
-            System.out.println("Прибыль месяца : " + (monthIncome - monthExpense));
+                yearSumExpenses += monthExpense;
+                yearSumincomes += monthIncome;
+
+                System.out.println("Прибыль месяца : " + (monthIncome - monthExpense));
+            }
         }
-
-        averageExpenses = yearSumExpenses / monthsNames.length;
-        averageIncomes = yearSumincomes / monthsNames.length;
-        System.out.println("Средний доход за год : " + averageIncomes);
-        System.out.println("Средний расход за год : " + averageExpenses);
+        if ((monthIncome != 0) && (monthExpense != 0)) {
+            averageExpenses = yearSumExpenses / monthsNames.length;
+            averageIncomes = yearSumincomes / monthsNames.length;
+            System.out.println("Средний доход за год : " + averageIncomes);
+            System.out.println("Средний расход за год : " + averageExpenses);
+        } else {
+            System.out.println("Ошибка, необходимо проверить наличие годового отчета в директории");
+        }
     }
 
 }
